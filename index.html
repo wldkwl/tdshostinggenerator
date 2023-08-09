@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>TDS Hosting Helper</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/a0e7858983.js" crossorigin="anonymous"></script>
+  
+
+  <!-- <section class="section">
+    <h1 class="title">TITLE</h1>
+  </section> -->
+
+  <section class="section">
+    <h1 class="title">TITLE</h1>
+    <input class="input is-primary" type="text" id="titleinput" placeholder="Strat Title">
+    <p class="mb-4"></p>
+    <input class="input is-secondary" type="text" id="emojiinput" placeholder="Emoji/Example: :coin:">
+  </section>
+
+  <section class="section">
+    <h1 class="title">MAIN OPTIONS</h1>
+    <div class="columns is-mobile is-centered is-gapless">
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="player1">
+          Player 1
+        </label>
+      
+      </div>
+      
+      <div class="column">
+        <label class="radio">
+          <input type="radio" name="answer" id="youoptionp1">
+          You
+        </label>
+      </div>
+      
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="disabledoptionp1">
+          Disabled
+        </label>
+      </div>
+    </div>
+    <div class="columns is-mobile is-centered is-gapless">
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="player2">
+          Player 2
+        </label>
+      
+      </div>
+      
+      <div class="column">
+        <label class="radio">
+          <input type="radio" name="answer" id="youoptionp2">
+          You
+        </label>
+      </div>
+      
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="disabledoptionp2">
+          Disabled
+        </label>
+      </div>
+    </div>
+    <div class="columns is-mobile is-centered is-gapless">
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="player3">
+          Player 3
+        </label>
+      
+      </div>
+      
+      <div class="column">
+        <label class="radio">
+          <input type="radio" name="answer" id="youoptionp3">
+          You
+        </label>
+      </div>
+      
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="disabledoptionp3">
+          Disabled
+        </label>
+      </div>
+    </div>
+    <div class="columns is-mobile is-centered is-gapless">
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="player4">
+          Player 4
+        </label>
+      
+      </div>
+      
+      <div class="column">
+        <label class="radio">
+          <input type="radio" name="answer" id="youoptionp4">
+          You
+        </label>
+      </div>
+      
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="disabledoptionp4">
+          Disabled
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h1 class="title">OTHER OPTIONS</h1>
+    <div class="columns is-mobile is-centered is-gapless">
+      <div class="column">
+        <label class="checkbox">
+          <input type="checkbox" id="isprivateserver">
+          Private Server
+        </label>
+      </div>
+      <div class="column">
+        <input class="input is-link" type="text" id="stratlink" placeholder="Strat Link">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h1 class="title">OUTPUT</h1>
+    
+    <article class="message is-success is-hidden" id="outputmessage">
+      <div class="message-header">
+        <p id="outputheader">Success</p>
+      </div>
+      <div class="message-body" id="outputbody">
+        Successfully generated
+      </div>
+    </article>
+
+    <textarea class="textarea" rows="10" id="output" readonly>Empty.</textarea>
+    <p class="mb-4"></p>
+    <button class="button" id='copybutton'>
+      <span class="icon">
+        <i class="fa-solid fa-clipboard" id="iconcopy"></i>
+      </span>
+    </button>
+  </section>
+
+  <script>
+    let icon = document.getElementById('iconcopy');
+    let button = document.getElementById('copybutton');
+
+    function convertHTML(str) {
+      return str.replace(/&amp;/g,"&")
+        .replace(/&lt;/g,"<")
+        .replace(/&gt;/g,">")
+        .replace(/&quot;/g,'"')
+        .replace(/&apos;/g,"'");
+    }
+    
+    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+    const copyContent = async () => {
+      try {
+        let text = document.getElementById('output').innerHTML;
+        await navigator.clipboard.writeText(convertHTML(text));
+        icon.classList.replace('fa-clipboard', 'fa-clipboard-check')
+        icon.classList.add('fa-bounce')
+        console.log('Content copied to clipboard: ', convertHTML(text));
+        await sleep(1000)
+        icon.classList.replace('fa-clipboard-check', 'fa-clipboard')
+        icon.classList.remove('fa-bounce')
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    }
+
+     button.addEventListener("click", copyContent)
+  </script>
+  
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+</body>
+
+</html>
